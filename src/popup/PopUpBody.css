@@ -1,0 +1,70 @@
+.button {
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 20px;
+    list-style: none;
+    margin: 0;
+    outline: none;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin: 10px;
+}
+
+.button.start {
+    background-color: #04AA6D;
+}
+
+.button.stop {
+    background-color: #B22222;
+}
+
+.button.start:hover,
+.button.start:focus,
+.button.start:disabled {
+    background-color: #9DC183;
+}
+
+.button.stop:hover,
+.button.stop:focus,
+.button.stop:disabled {
+    background-color: #CD5C5C;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-start;
+    /* Adjust this property to change the space between buttons */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    margin-bottom: 20px;
+    /* Adjust as needed */
+}
+
+.item h3 {
+    margin: 0;
+}
+
+.item p {
+    margin: 5px 0;
+}
