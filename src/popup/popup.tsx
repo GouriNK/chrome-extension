@@ -5,7 +5,6 @@ import PopUpBody from './PopUpBody';
 
 const test = (
     <div>
-        <h1>Hello There!</h1>
         <PopUpBody/>
     </div>
 );

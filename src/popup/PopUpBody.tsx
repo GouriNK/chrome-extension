@@ -1,14 +1,14 @@
 import './PopUpBody.css';
 import React, { useState } from 'react';
 import { RECORDING_OBJECT } from '../contentScript/utils';
+import ObjectDisplay from './ObjectDisplay';
 export default function PopUpBody() {
 
   const [recordingObject, setRecordingObject] = useState({});
-  // const [isStartEnabled, setIsStartEnabled] = useState(true);
+  const [isStartEnabled, setIsStartEnabled] = useState(true);
 
   const handleStartRecording = (e) => {
     e.preventDefault();
-    // setIsStartEnabled((prevIsStartEnabled) => !prevIsStartEnabled);
     console.log('Clicked start!');
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       const tab = tabs[0];
@@ -18,6 +18,7 @@ export default function PopUpBody() {
         }).then((response) => {
           console.log(response);
           setRecordingObject({});
+          setIsStartEnabled((prevIsStartEnabled) => !prevIsStartEnabled);
         });
       }
     });
@@ -25,7 +26,6 @@ export default function PopUpBody() {
 
   const handleStopRecording = (e) => {
     e.preventDefault();
-    // setIsStartEnabled((prevIsStartEnabled) => !prevIsStartEnabled);
     console.log('Clicked stop!');
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       const tab = tabs[0];
@@ -46,6 +46,7 @@ export default function PopUpBody() {
                 steps: result.status.steps
                 // You can add or modify other properties as needed
               }));
+              setIsStartEnabled((prevIsStartEnabled) => !prevIsStartEnabled);
             }
           });
         });
@@ -56,9 +57,6 @@ export default function PopUpBody() {
   }
 
   return (
-
-    
-
     <div className="container">
       <div className="item">
         <div className="button-container">
@@ -66,12 +64,13 @@ export default function PopUpBody() {
            <button className="button stop" onClick={handleStopRecording} >Stop</button> {/*disabled={isStartEnabled} */}
         </div>
       </div>
-      {Object.keys(recordingObject).length > 0 && Object.keys(recordingObject).map((key, index) => (
+      {/* {Object.keys(recordingObject).length > 0 && Object.keys(recordingObject).map((key, index) => (
         <div className="item" key={index}>
           <h3>{key}</h3>
           <p>{recordingObject[key]}</p>
         </div>
-      ))}
+      ))} */}
+      <ObjectDisplay recordingObj={recordingObject} />
     </div>
 
   )
