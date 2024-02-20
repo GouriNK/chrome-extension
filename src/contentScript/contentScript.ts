@@ -1,4 +1,5 @@
 import { logFunctionForClick } from './clickEvent';
+import { handleResize } from './resizeEvent';
 import { checkScrollDirection } from './scrollEvent'; 
 import { RECORDING_OBJECT, addStep, isMobile } from './utils';
 
@@ -15,6 +16,11 @@ const startRecording = () => {
     // console.log(`%cScreen size : ${window.innerWidth} x ${window.innerHeight}`, CONSOLE_STYLE)
     clickEventsCapture();
     scrollEventCapture();
+    resizeEventCapture();
+}
+
+const stopRecording = () => {
+  clearAllEvents();
 }
 
 const clickEventsCapture = () => {
@@ -25,14 +31,16 @@ const scrollEventCapture = () => {
   window.addEventListener('scroll', checkScrollDirection);
 }
 
-const stopRecording = () => {
-  clearAllEvents();
+const resizeEventCapture = () => {
+  window.addEventListener('resize', handleResize);
 }
+
 
 const clearAllEvents = () => {
   // console.log('clear all')
   document.body.removeEventListener('click', logFunctionForClick);
   window.removeEventListener('scroll', checkScrollDirection);
+  window.removeEventListener('resize', handleResize);
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
